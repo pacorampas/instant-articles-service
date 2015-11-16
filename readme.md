@@ -13,7 +13,7 @@
 - En la carpeta raíz del proyecto ejecuta: node app
 
 ## Como usarlo
-- Abre la urel localhost:3000 en un navegador
+- Abre localhost:3000 en un navegador
 - Pásale como query el artículo que quieras pasar a marcado FIA.
 - Solo acepta urls de El Mundo. Hay que pasarselas en su versión .json
 - Ejemplo: http://localhost:3000/?article=http://www.elmundo.es/espana/2015/11/15/5648ff06ca47412c718b45cc.json
