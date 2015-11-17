@@ -80,7 +80,7 @@
       var year = date.getFullYear();
       var hour = date.getHours();
       var min = date.getMinutes();
-      timeTag = '<time class="'+cssClass+'" dateTime="'+time+'">'+day+'/'+month+'/'+year+' '+hour+':'+min+'</time>';
+      timeTag = '<time class="'+cssClass+'" dateTime="'+date.toISOString()+'">'+day+'/'+month+'/'+year+' '+hour+':'+min+'</time>';
       return timeTag;
     },
     image: function(multimedia) {
