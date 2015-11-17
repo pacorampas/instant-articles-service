@@ -40,7 +40,8 @@
       var fiaMarckup = {
         head: headFia,
         body: bodyFia,
-        html: '<!DOCTYPE html><html>'+headFia+bodyFia+'</html>'
+        html: '<!DOCTYPE html><html>'+headFia+bodyFia+'</html>',
+        htmlCDATA: '<![CDATA['+'<!DOCTYPE html><html>'+headFia+bodyFia+'</html>'+']]>'
       };
 
       res.send(fiaMarckup);
