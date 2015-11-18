@@ -8,7 +8,6 @@
       var arrPromises = [];
       var max = config.max || articles.length;
 
-      //articles.forEach((art) => {
       for (var i=0; i<max; i++) {
         var art = articles[i];
         if (config.exc) {
@@ -18,7 +17,6 @@
         }
         arrPromises.push(this.getJson(jsonUrl));
       }
-      //});
 
       return Promise.all(arrPromises);
     },

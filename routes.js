@@ -38,11 +38,13 @@
         //es para pre formatear o encontrar la url dentro de un objeto (si lo fuera)
         //antes de hacer la llamada y crear la promesa.
         //También se puede pasar un config.max, por defecto es el length del json de
-        //artículos que se pasa como primer parámetro
+        //artículos que se pasa como primer parámetro. El máximo es 50.
+        var max = (resp.cts.length > 50) ? 50 : resp.cts.length;
         var config = {
           exc: (articleElement) => {
             return articleElement.url.replace('.html', '.json');
-          }
+          },
+          max: max
         }
 
         requestArticles.getJsonFromUrlsArr(resp.cts, config).then(function(resp) {
