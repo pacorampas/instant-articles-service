@@ -1,9 +1,11 @@
 (function() {
   'use strict';
 
-  var request = require('request');
-
   function findIntoMultimedia(multimediaArray, query) {
+    if (!multimediaArray) {
+      return false;
+    }
+
     for (var i=0; i<multimediaArray.length; i++) {
       if (multimediaArray[i].type === query.type &&  multimediaArray[i].position == query.position) {
         return multimediaArray[i];
@@ -172,22 +174,32 @@
 
       return body;
     },
-    getArticle: function(url) {
-      return new Promise(function(resolve, reject) {
-        request(url, function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            try {
-              var bodyJson = JSON.parse(body);
-            } catch (e) {
-              reject(e);
-              return;
-            }
-            resolve(bodyJson);
-          } else {
-            reject();
-          }
-        })
-      })
+    marckup: function(article) {
+      var headFia = this.head({
+        url: article.url
+      });
+
+      var headerFia = this.header({
+        title: article.titulo,
+        authors: article.firmas || null,
+        details: {
+          summary: article.cintillo || null,
+          more: article.antetitulo || null
+        },
+        publishedAt: article.firstPublishedAt,
+        modifiedAt: article.publishedAt,
+        multimedia: article.multimedia
+      });
+
+      var bodyFia = this.body(headerFia, article.texto);
+
+      return {
+        head: headFia,
+        body: bodyFia,
+        html: '<!DOCTYPE html><html>'+headFia+bodyFia+'</html>',
+        htmlCDATA: '<![CDATA[ <!DOCTYPE html><html>'+headFia+bodyFia+'</html> ]]>'
+      };
+
     }
   };
 
