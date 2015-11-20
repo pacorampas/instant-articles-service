@@ -7,7 +7,12 @@
     var requestArticles = require('./requestService');
 
     app.get('/', function(req, res) {
-      var articleUrl = req.query.article.replace('.html', '.json');
+      var articleUrl = req.query.article;
+      if (!articleUrl) {
+        throw 'El artículo no fue definido en la url query expected: localhost:3000/?article="elmundo.es/articulo.html';
+      }
+
+      articleUrl = articleUrl.replace('.html', '.json');
 
       requestArticles.getJson(articleUrl).then(function(resp) {
         var article = resp;
